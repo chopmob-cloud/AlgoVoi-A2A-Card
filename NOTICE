@@ -1,0 +1,7 @@
+card-ref
+Copyright (c) 2026 AlgoVoi (chopmob-cloud)
+
+Licensed under the Apache License, Version 2.0.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+card_ref canonicalizes under RFC 8785 (JSON Canonicalization Scheme) and SHA-256.
