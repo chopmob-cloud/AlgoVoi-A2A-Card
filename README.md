@@ -41,9 +41,9 @@ CLI:
 
 Vectors live in the algovoi-jcs-conformance-vectors corpus, set card_ref_v1: positives, invariants (signature exclusion, key reorder), and negatives (changed skill, changed scheme), verified byte for byte across independent Python and Node runners.
 
-## A2A Ecosystem
+## Open Licence for A2A Partners
 
-card_ref is published as an open primitive for the A2A ecosystem. Any A2A partner, implementer, or framework is free to adopt, implement, and build on it. Apache 2.0: retain the NOTICE file and licence header in derivative works.
+card_ref carries an open licence for A2A partners. Any A2A partner, implementer, or framework may adopt, implement, and build on it freely under Apache 2.0. Retain the NOTICE file and licence header in derivative works.
 
 ## License
 
