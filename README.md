@@ -41,6 +41,20 @@ CLI:
 
 Vectors live in the algovoi-jcs-conformance-vectors corpus, set card_ref_v1: positives, invariants (signature exclusion, key reorder), and negatives (changed skill, changed scheme), verified byte for byte across independent Python and Node runners.
 
+## Signing (A2A section 8.4)
+
+`card_sign.py` adds the optional JWS side that `card_ref` content-addresses, so you can sign a card, content-address it, or both, and both sign over identical bytes.
+
+    payload   = AgentCard without the signatures field
+    canonical = JCS(payload)                       (RFC 8785)
+    protected = {"alg":"EdDSA","typ":"JOSE","kid":..., "jku":...}
+    signature = Ed25519( BASE64URL(protected) "." BASE64URL(canonical) )
+    card["signatures"] = [{"protected": ..., "signature": ...}]
+
+`kid` is the SHA-256 thumbprint of the raw Ed25519 public key, so the JWKS key at `jku` is self-identifying. A verifier resolves the key by `kid` and recomputes the canonical form; `verify_card` does exactly this. Keyless verification stays available via `card_ref`: because both sign over the same canonical bytes, `card_ref == "sha256:" + SHA-256(signing payload)`.
+
+This reference reproduces the signature construction AlgoVoi runs in production (the signed AgentCard at `https://api.algovoi.co.uk/.well-known/agent.json`) byte for byte: the same canonicalization, protected header, and Ed25519 detached JWS. Signing uses your own key; the example uses a demo key only. Note: A2A section 8.4.1 also specifies Protocol Buffer field-presence handling for cards that carry present-but-default fields. This reference, like our production signer, canonicalizes the card as served (RFC 8785, `signatures` excluded), which is byte-identical for AgentCards that do not carry present-but-default fields.
+
 ## Open Licence for A2A Partners
 
 card_ref carries an open licence for A2A partners.
