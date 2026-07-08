@@ -12,7 +12,7 @@ A2A lets an agent optionally sign its AgentCard (specification section 8.4). A s
 
 ## Construction
 
-The preimage is exactly the payload A2A canonicalizes for AgentCard signing (specification section 8.4.2: exclude the signatures field). So card_ref is the content address of the same bytes an A2A signature signs over.
+The preimage is exactly the payload A2A canonicalizes for AgentCard signing (specification section 8.4.1: exclude the signatures field). So card_ref is the content address of the same bytes an A2A signature signs over.
 
 Properties:
 
